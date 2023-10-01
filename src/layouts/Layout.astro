@@ -1,0 +1,44 @@
+---
+// props
+export interface Props {
+	title?: string;
+	description?: string;
+}
+const { title = "Explore Latest Avatars", description = "Desc" } = Astro.props;
+
+// components
+import Header from "../components/header.astro";
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content="Astro description" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<!-- gen  -->
+		<title>{title} | AvatarArchives</title>
+		<meta name="description" content="{description}" />
+		<!-- meta  -->
+		<meta name="generator" content={Astro.generator} />
+		<meta name="author" content="ArnavK-09" />
+		<meta name="copyright" content="ArnavK-09" />
+		<meta name="robots" content="index, follow" />
+		<!-- font  -->
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
+	</head>
+	<body class="bg-primary-light text-white overflow-x-hidden">
+		<header><Header /></header>
+		<slot />
+	</body>
+</html>
+
+<style is:global>
+	html,
+	body {
+		font-family: 'Audiowide', cursive;
+	}
+</style>

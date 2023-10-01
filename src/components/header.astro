@@ -1,0 +1,73 @@
+<header class="z-30 w-full px-2 py-4 bg-primary-extra sm:px-4">
+  <div class="flex items-center justify-between mx-auto max-w-7xl">
+    <a href="/" title="AvatarArchives Home Page" class="flex items-center">
+      AvatarArchives
+      <span class="sr-only">AvatarArchives</span>
+    </a>
+    <div class="relative hidden space-x-1 md:inline-flex">Links</div>
+    <div class="flex items-center space-x-1">
+      <a href="#" class="md:rounded-2xl rounded-lg btn btn-md mx-4 md:btn-lg bg-gradient-to-r shadow-md shadow-primary-dark from-primary to-primary-dark">Explore Avatars</a>
+      <!-- mobile menu  -->
+      <div class="inline-flex md:hidden" x-data="{ open: false }">
+        <button class="flex-none px-2" @click="open = true">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 h-6 fill-white">
+            <path fill-rule="evenodd" d="M3 9a.75.75 0 01.75-.75h16.5a.75.75 0 010 1.5H3.75A.75.75 0 013 9zm0 6.75a.75.75 0 01.75-.75h16.5a.75.75 0 010 1.5H3.75a.75.75 0 01-.75-.75z" clip-rule="evenodd" />
+          </svg>          
+          <span class="sr-only">Open Menu</span>
+        </button>
+        <div class="absolute top-0 left-0 right-0 z-50 flex flex-col p-2 m-2 space-y-1 rounded shadow" x-show.transition="open" @click.away="open = false" x-cloak>
+          <button class="self-end flex-none px-2 btn btn-link btn-icon" @click="open = false">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+            <span class="sr-only">Close Menu</span>
+          </button>
+          <div class="grid grid-cols-2 gap-1">
+            <a href="#" class="px-3 py-2 transition rounded hover:bg-gray-200 hover:text-primary">Pricing</a>
+            <a href="#" class="px-3 py-2 transition rounded hover:bg-gray-200 hover:text-primary">Blog</a>
+            <a href="#" class="px-3 py-2 transition rounded hover:bg-gray-200 hover:text-primary">Sign in</a>
+          </div>
+          <p class="pt-2 pl-3 text-xs font-semibold tracking-wide text-gray-500 uppercase">Features</p>
+          <div class="grid grid-cols-2 gap-1">
+            <a href="#" class="px-3 py-2 transition rounded hover:bg-gray-200 hover:text-primary">Shared Inbox</a>
+            <a href="#" class="px-3 py-2 transition rounded hover:bg-gray-200 hover:text-primary">Reporting</a>
+            <a href="#" class="px-3 py-2 transition rounded hover:bg-gray-200 hover:text-primary">Knowledge Base</a>
+            <a href="#" class="px-3 py-2 transition rounded hover:bg-gray-200 hover:text-primary">Live Chat</a>
+            <a href="#" class="px-3 py-2 transition rounded hover:bg-gray-200 hover:text-primary">In-app Messaging</a>
+          </div>
+          <a href="#" class="flex items-center justify-center p-3 font-medium transition bg-gray-200 rounded text-primary hover:bg-gray-300">
+            View all features
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+              class="w-4 h-4 ml-1"
+            >
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>

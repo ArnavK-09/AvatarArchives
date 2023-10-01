@@ -1,0 +1,25 @@
+---
+// imports 
+import { getCollection, getEntry } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+
+// get entry 
+const { slug } = Astro.params;
+if (!slug) throw new Error('Slug not found');
+const avatar = await getEntry('avatars', slug);
+
+// if not there 
+if (!avatar) throw new Error('No avatar found for this slug');
+const { Content } = await avatar.render();
+
+// Generate static pages
+export async function getStaticPaths() {
+  const posts = await getCollection('avatars');
+  return posts.map(post => ({ params: { slug: post.slug } }));
+}
+---
+
+<Layout title={avatar.data.title}>
+  <h1>{avatar.data.title}</h1>
+  <Content />
+</Layout>

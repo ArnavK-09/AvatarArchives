@@ -1,0 +1,23 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../layouts/Layout.astro';
+
+const posts = await getCollection('avatars');
+---
+
+<Layout title="Keystatic & Astro's Content Collections">
+  <div>
+    <h1>Keystatic ⚡️ + Astro 🚀</h1>
+
+    <ul>
+        {JSON.stringify(posts)}
+      <!-- {
+        posts.map(x => (
+          <li>
+            {JSON.stringify(x)}
+          </li>
+        ))
+      } -->
+    </ul>
+  </div>
+</Layout>
