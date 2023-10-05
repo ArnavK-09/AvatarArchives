@@ -96,6 +96,7 @@ export default config({
             kind: 'today'
           }
         }),
+        original_content: fields.checkbox({ label: 'Original Content?', description: "Check, if this content is prepared by You", defaultValue: false }),
         featured: fields.checkbox({ label: 'Is this Avatar Featured?', description: "If Checked, this avatar will be shown on top of site", defaultValue: false }),
         draft: fields.checkbox({ label: 'Is this Avatar Under Construction?', description: "If Checked, this avatar won't be shown on site", defaultValue: false }),
       }

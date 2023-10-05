@@ -1,25 +1,150 @@
 ---
-// imports 
-import { getCollection, getEntry } from 'astro:content';
-import Layout from '../../layouts/Layout.astro';
+// imports
+import { getCollection, getEntry } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+import AvatarPageButton from "../../components/Avatar/Page/Butons.svelte";
 
-// get entry 
+// get entry
 const { slug } = Astro.params;
-if (!slug) throw new Error('Slug not found');
-const avatar = await getEntry('avatars', slug);
+if (!slug) throw new Error("Slug not found");
+const avatar = await getEntry("avatars", slug);
 
-// if not there 
-if (!avatar) throw new Error('No avatar found for this slug');
+// if not there
+if (!avatar) throw new Error("No avatar found for this slug");
 const { Content } = await avatar.render();
 
 // Generate static pages
 export async function getStaticPaths() {
-  const posts = await getCollection('avatars');
-  return posts.map(post => ({ params: { slug: post.slug } }));
+  const avatars = await getCollection("avatars");
+  return avatars.map((avatar) => ({ params: { slug: avatar.slug } }));
 }
+
+// Imports
+import Tag from "../../components/UI/Tag.svelte";
 ---
 
 <Layout title={avatar.data.title}>
-  <h1>{avatar.data.title}</h1>
-  <Content />
+  <div class="py-6">
+    <!-- Breadcrumbs -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center space-x-2 text-gray-200 text-sm">
+        <!-- crumb  -->
+        <a href="/" class="hover:underline capitalize hover:text-primary"
+          >Home</a
+        >
+        <span>
+          <svg
+            class="h-5 w-5 leading-none"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M9 5l7 7-7 7"></path>
+          </svg>
+        </span>
+        <!-- crumb end  -->
+        <!-- crumb  -->
+        <a
+          href={`/explore/${avatar.data.type}`}
+          class="hover:underline capitalize hover:text-primary"
+          >{avatar.data.type} Avatars</a
+        >
+        <span>
+          <svg
+            class="h-5 w-5 leading-none"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M9 5l7 7-7 7"></path>
+          </svg>
+        </span>
+        <!-- crumb end  -->
+        <!-- post name  -->
+        <p class="capitalize">{avatar.data.title.substr(0, 13) + "..."}</p>
+
+        <!-- name  end -->
+      </div>
+    </div>
+    <!-- / Breadcrumbs -->
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-6">
+      <div class="flex flex-col md:flex-row -mx-4">
+        <div class="md:flex-1 px-4">
+          <div>
+            <div class="h-64 md:h-80 md:my-4 my-8">
+              <div class="flex items-center justify-center">
+                <div class="relative">
+                  <img
+                  draggable="false"
+                  (dragstart)="false;"
+                  oncontextmenu="
+                  return false
+                  "
+                  class="md:sticky md:w-[30rem] scale-110 md:scale-100 w-64 shadow-2xl h-64 md:h-[30rem] noSelect aspect-square rounded-lg"
+                  src={avatar.data.avatar ?? "/logo.png"}
+                  alt="Avatar"
+                />
+                  {avatar.data.original_content == true && (
+                <span class=" absolute top-0 text-sm p-3 py-0.5 tracking-wide font-semibold bg-primary rounded-b-2xl">Original Content</span>
+                  )}
+              </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- info  -->
+        <div class="md:flex-1 px-4">
+          <!-- headings  -->
+          <div class="text-center">
+            <h2
+              class="mb-2 leading-tight tracking-tight font-bold text-white text-2xl md:text-3xl capitalize"
+            >
+              {avatar.data.title}
+            </h2>
+            <p class="text-gray-400 text-sm">
+              Posted By <a
+                target="_blank"
+                href={`//discord.com/users/${avatar.data.author.id}`}
+                class="text-primary text-lg hover:text-gray-300 tracking-wider"
+                >{`@${avatar.data.author.username}`}</a
+              >
+            </p>
+          </div>
+
+          <!-- tags  -->
+          <div class="my-4 flex justify-center text-center flex-wrap gap-1">
+            {
+              avatar.data.tags.map((tag: string) => {
+                return <Tag tag={tag} client:load />;
+              })
+            }
+          </div>
+
+          <!-- btns  -->
+          <AvatarPageButton download={avatar.data.avatar} buy={avatar.data.buy} client:load />
+
+          <!-- content  -->
+          <hr
+            class="w-full px-3 my-5 border border-gray-500 rounded-full drop-shadow-xl"
+          />
+          <article
+            class="prose prose-invert prose-headings:text-gray-200 hover:prose-a:text-primary"
+          >
+            <Content />
+          </article>
+        </div>
+      </div>
+    </div>
+  </div>
 </Layout>

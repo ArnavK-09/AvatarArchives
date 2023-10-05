@@ -1,59 +1,54 @@
+---
+// Props
+type Props = {
+  data: any;
+  heading: string;
+  highlight?: string;
+};
+const { data: avatars, heading, highlight } = Astro.props;
 
-<section class="bg-primary-extra rounded-2xl mx-2 py-8 px-4 my-10">
-    <!-- heading  -->
-    <div class="mb-10">
-        <h2 class="text-4xl select-none ml-2 pl-1.5 text-left tracking-wide pb-2 font-bold">
-            <span
-                class="inline-block w-2 p-0 zigzag-underline border-transparent border-1 bg-gradient-to-r from-indigo-600 via-indigo-600 to-indigo-700 transform -skew-x-12 transform-origin-left text-transparent text-thin"
-                >.</span
-            >
-             Section
-            <span
-                class="text-transparent bg-clip-text bg-gradient-to-tl from-indigo-900 via-indigo-500 to-indigo-700"
-            >
-                Name
-            </span>
-        </h2>
-    </div>
-    <!-- grid  -->
-    <div class="grid grid-cols-1 md:grid-cols-3">
-        <article
-            class="group hover:scale-105 hover:brightness-110 cursor-pointer rounded-2xl bg-gradient-to-br hover:from-primary hover:via-primary-dark hover:to-primary from-primary/50 via-primary to-primary-dark p-1 shadow-xl transition hover:shadow-sm"
-        >
-            <div class="rounded-2xl bg-primary-light p-4 md:p-6">
-                <!-- pic  -->
-                <div
-                    class="mb-2 rounded-2xl bg-gradient-to-br from-primary via-primary-dark to-primary hover:from-primary/50 hover:via-primary hover:to-primary-dark p-1 shadow-xl transition hover:shadow-sm"
-                >
-                    <img
-                        class="w-full aspect-square h-full rounded-2xl"
-                        src="https://picsum.photos/200"
-                        alt="Avatar"
-                    />
-                </div>
+// imports
+import AvatarCard from "../components/Card/Avatar.astro";
+---
 
-                <!-- info  -->
-                
-                <a  href="#">
-                    <h3 class="mt-0.5 text-lg font-medium text-white">
-                        Skull Graffiti 
-                    </h3>
-                </a>
-                <!-- tags  -->
-                <div class="mt-4 flex flex-wrap gap-1" >
-                    {
-                        ["Discord"].map((tag) => {
-                            return (
-                                <span
-                                    class={`whitespace-nowrap rounded-full bg-primary-dark/10 px-2.5 py-0.5 text-xs text-primary`}
-                                >
-                                    {tag}
-                                </span>
-                            );
-                        })
-                    }
-                </div>
-            </div>
-        </article>
+<section  id="explore" class="bg-primary-extra rounded-2xl mx-2 py-8 px-4 my-10">
+  <!-- heading  -->
+  <div class="mb-10">
+    <h2
+      class="text-3xl md:text-4xl select-none ml-2 pl-1.5 text-left tracking-wide pb-2 font-bold"
+    >
+      <span
+        class="inline-block md:mr-5 mr-2 w-2 p-0 zigzag-underline border-transparent border-1 bg-gradient-to-r from-indigo-600 via-indigo-600 to-indigo-700 transform -skew-x-12 transform-origin-left text-transparent text-thin"
+        >.</span
+      >
+      {heading}
+      <span
+        class="md:mx-4 ml-1 text-transparent bg-clip-text bg-gradient-to-tl from-indigo-900 via-indigo-500 to-indigo-700"
+      >
+        {highlight}
+      </span>
+    </h2>
+  </div>
+  <!-- grid  -->
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+    {avatars.slice(0,5).map((data: any) => <AvatarCard data={data} />)}
+    {(avatars.length >=5) && (
+        <a href={`/explore`} aria-label={`explore more`}>
+<div
+class="group h-full text-center hover:brightness-110 cursor-pointer rounded-2xl bg-gradient-to-br hover:from-primary hover:via-primary-dark hover:to-primary from-primary/50 via-primary to-primary-dark p-1 shadow-xl transition hover:shadow-sm"
+>
+<div class="rounded-2xl grid h-full place-items-center w-full bg-primary-light p-4 md:p-6">
+    <div class="flex justify-center items-center">
+        <div>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-20 h-20">
+  <path fill-rule="evenodd" d="M4.5 12a1.5 1.5 0 113 0 1.5 1.5 0 01-3 0zm6 0a1.5 1.5 0 113 0 1.5 1.5 0 01-3 0zm6 0a1.5 1.5 0 113 0 1.5 1.5 0 01-3 0z" clip-rule="evenodd" />
+</svg></div>
+<h2>Explore More</h2>
+
+        </div>
     </div>
+</div>
+</a>
+    )}
+  </div>
 </section>

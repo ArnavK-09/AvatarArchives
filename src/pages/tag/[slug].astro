@@ -1,0 +1,36 @@
+---
+// imports
+import { getCollection } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+
+// get tag
+const { slug } = Astro.params;
+
+// Generate static pages
+export async function getStaticPaths() {
+  const avatars = await getCollection("avatars");
+  let tags: string[] = [];
+  avatars.forEach((avatar: any) => {
+    avatar.data.tags.forEach((tag: string) => {
+      if (!tags.includes(tag.toLowerCase() as never)) {
+        tags.push(tag.toLowerCase() as never);
+      }
+    });
+  });
+  return tags.map((tag) => ({ params: { slug: tag } }));
+}
+const taggedAvatars = await getCollection("avatars", ({ data }) => {
+  let status = false;
+  data.tags.forEach((x: string) => {
+    if (x.toLowerCase() == slug!.toLowerCase()) {
+      status = true;
+    }
+  });
+  return status;
+});
+---
+
+<Layout>
+    Hi
+    {slug} 
+</Layout>

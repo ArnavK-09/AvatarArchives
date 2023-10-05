@@ -1,44 +1,82 @@
 ---
 // props
 export interface Props {
-	title?: string;
-	description?: string;
+  title?: string;
+  description?: string;
 }
-const { title = "Explore Latest Avatars", description = "Desc" } = Astro.props;
+const { title = "Explore Latest Avatars", description } = Astro.props;
+
+// imports
+import { ViewTransitions } from "astro:transitions";
+
+// meta
+const meta = {
+  get title(): string {
+    return title.charAt(0).toUpperCase() + title.slice(1);
+  },
+  get description(): string {
+    return description ?? `
+    Discover a wide variety of static and animated avatars for popular social platforms like Discord, Instagram, Reddit, Slack, and more at AvatarArchives. Express your unique personality and enhance your online presence with our diverse collection of eye-catching avatars. Stand out in the digital world and make a statement with AvatarArchives.
+    `.trim();
+  },
+};
 
 // components
 import Header from "../components/header.astro";
+import Modal from "../components/UI/Modal.svelte";
 ---
 
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="description" content="Astro description" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<!-- gen  -->
-		<title>{title} | AvatarArchives</title>
-		<meta name="description" content="{description}" />
-		<!-- meta  -->
-		<meta name="generator" content={Astro.generator} />
-		<meta name="author" content="ArnavK-09" />
-		<meta name="copyright" content="ArnavK-09" />
-		<meta name="robots" content="index, follow" />
-		<!-- font  -->
-		<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
-	</head>
-	<body class="bg-primary-light text-white overflow-x-hidden">
-		<header><Header /></header>
-		<slot />
-	</body>
+  <head>
+    <!-- Head  -->
+    <ViewTransitions />
+    <meta charset="UTF-8" />
+    <meta name="description" content="Astro description" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/png" href="/logo.png" />
+    <!-- gen  -->
+    <title>{meta.title} | AvatarArchives</title>
+    <meta name="description" content={meta.description} />
+    <!-- meta  -->
+    <meta name="generator" content={Astro.generator} />
+    <meta name="author" content="ArnavK-09" />
+    <meta name="copyright" content="ArnavK-09" />
+    <meta name="robots" content="index, follow" />
+    <!-- font  -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body transition:animate="fade" class="bg-primary-light text-white">
+    <Modal client:load />
+    <header><Header /></header>
+    <slot />
+    <footer></footer>
+  </body>
+  <style is:global>
+    html,
+    body {
+      -webkit-tap-highlight-color: transparent;
+      font-family: "Audiowide", cursive;
+      scroll-behavior: smooth;
+    }
+    .noSelect {
+      -webkit-tap-highlight-color: transparent;
+      -webkit-touch-callout: none;
+      -webkit-user-select: none;
+      -khtml-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      user-drag: none;
+      -webkit-user-drag: none;
+    }
+    .noSelect:focus {
+      outline: none !important;
+    }
+  </style>
 </html>
-
-<style is:global>
-	html,
-	body {
-		font-family: 'Audiowide', cursive;
-	}
-</style>

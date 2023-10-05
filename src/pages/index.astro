@@ -1,13 +1,29 @@
 ---
-// Imports 
-import Layout from '../layouts/Layout.astro';
-import Hero from '../components/Home/Hero.astro';
-import Section from '../components/Section.astro';
+// Imports
+import { getCollection } from "astro:content";
+import Layout from "../layouts/Layout.astro";
+import Hero from "../components/Home/Hero.astro";
+import Section from "../components/Section.astro";
+
+// get Data
+const publishedAvatars = await getCollection("avatars", ({ data }) => {
+  return data.draft == false;
+});
+const featuredAvatars = await getCollection("avatars", ({ data }) => {
+  return data.featured == true && data.draft == false;
+});
 ---
 
 <Layout>
-<Hero />
-<Section  />
+  <Hero />
+  {
+    featuredAvatars.length > 0 && (
+      <Section data={featuredAvatars} heading="Featured" highlight="Avatars" />
+    )
+  }
+  {
+    publishedAvatars.length > 0 && (
+      <Section data={publishedAvatars} heading="Latest" highlight="Avatars" />
+    )
+  }
 </Layout>
-
-
