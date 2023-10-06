@@ -1,5 +1,6 @@
 // imports
 import { defineConfig } from "astro/config";
+import vercel from "@astrojs/vercel/serverless";
 
 // libs
 import react from "@astrojs/react";
@@ -22,4 +23,5 @@ export default defineConfig({
       destination: "/under-construction",
     },
   },
+  adapter: vercel(),
 });

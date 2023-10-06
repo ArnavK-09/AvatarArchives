@@ -8,6 +8,7 @@
     "@astrojs/react": "^3.0.0",
     "@astrojs/svelte": "^4.0.3",
     "@astrojs/tailwind": "^5.0.0",
+    "@astrojs/vercel": "^5.0.2",
     "@keystatic/astro": "^1.0.2",
     "@keystatic/core": "^0.1.5",
     "@types/alpinejs": "^3.13.2",
