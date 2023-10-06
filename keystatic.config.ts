@@ -24,7 +24,7 @@ export default config({
             validation: {
               length: {
                 min: 2,
-                max: 30,
+                max: 60,
               },
             },
           },
