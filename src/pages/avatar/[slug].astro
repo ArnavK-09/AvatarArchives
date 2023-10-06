@@ -11,7 +11,7 @@ const avatar = await getEntry("avatars", slug);
 
 // if not there
 if (!avatar) Astro.redirect("/404/");
-const { Content } = await avatar?.render();
+const { Content } = await avatar?.render() ?? {Content: undefined};
 
 // Generate static pages
 export async function getStaticPaths() {
@@ -144,7 +144,7 @@ import Tag from "../../components/UI/Tag.svelte";
           >
             {() => {
               if(Content) {
-                return (<Content /> ?? <Tag tag="test" />)
+                return (<Content />)
               }
             }}
           </article>
