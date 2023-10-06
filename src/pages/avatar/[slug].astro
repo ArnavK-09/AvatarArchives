@@ -24,7 +24,7 @@ export async function getStaticPaths() {
 import Tag from "../../components/UI/Tag.svelte";
 ---
 
-<Layout title={avatar?.data.title} img={avatar.data.avatar }>
+<Layout title={avatar?.data.title} img={avatar?.data.avatar}>
   <div class="py-6">
     <!-- Breadcrumbs -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -72,7 +72,7 @@ import Tag from "../../components/UI/Tag.svelte";
         </span>
         <!-- crumb end  -->
         <!-- post name  -->
-        <p class="capitalize">{avatar.data.title.substr(0, 13) + "..."}</p>
+        <p class="capitalize">{avatar?.data.title.substr(0, 13) + "..."}</p>
 
         <!-- name  end -->
       </div>
@@ -133,7 +133,7 @@ import Tag from "../../components/UI/Tag.svelte";
           </div>
 
           <!-- btns  -->
-          <AvatarPageButton download={avatar?.data.avatar} buy={avatar.data.buy} client:load />
+          <AvatarPageButton download={avatar?.data.avatar} buy={avatar?.data.buy} client:load />
 
           <!-- content  -->
           <hr
