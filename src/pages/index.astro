@@ -17,12 +17,12 @@ const featuredAvatars = await getCollection("avatars", ({ data }) => {
 <Layout>
   <Hero />
   {
-    featuredAvatars.length > 0 && (
+    featuredAvatars?.length > 0 && (
       <Section data={featuredAvatars} heading="Elite" highlight="Avatars" />
     )
   }
   {
-    publishedAvatars.length > 0 && (
+    publishedAvatars?.length > 0 && (
       <Section data={publishedAvatars} heading="Latest" highlight="Avatars" />
     )
   }
