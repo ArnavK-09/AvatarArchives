@@ -24,7 +24,7 @@ export async function getStaticPaths() {
 import Tag from "../../components/UI/Tag.svelte";
 ---
 
-<Layout title={avatar.data.title} img={avatar.data.avatar }>
+<Layout title={avatar?.data.title} img={avatar.data.avatar }>
   <div class="py-6">
     <!-- Breadcrumbs -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -53,7 +53,7 @@ import Tag from "../../components/UI/Tag.svelte";
         <a
           href={`/explore/${avatar.data.type}`}
           class="hover:underline capitalize hover:text-primary"
-          >{avatar.data.type} Avatars</a
+          >{avatar?.data.type} Avatars</a
         >
         <span>
           <svg
@@ -93,10 +93,10 @@ import Tag from "../../components/UI/Tag.svelte";
                   return false
                   "
                   class="md:sticky md:w-[30rem] scale-110 md:scale-100 w-64 shadow-2xl h-64 md:h-[30rem] noSelect aspect-square rounded-lg"
-                  src={avatar.data.avatar ?? "/logo.png"}
+                  src={avatar?.data.avatar ?? "/logo.png"}
                   alt="Avatar"
                 />
-                  {avatar.data.original_content == true && (
+                  {avatar?.data.original_content == true && (
                 <span class=" absolute top-0 text-sm p-3 py-0.5 tracking-wide font-semibold bg-primary rounded-b-2xl">Original Content</span>
                   )}
               </div>
@@ -111,14 +111,14 @@ import Tag from "../../components/UI/Tag.svelte";
             <h2
               class="mb-2 leading-tight tracking-tight font-bold text-white text-2xl md:text-3xl capitalize"
             >
-              {avatar.data.title}
+              {avatar?.data.title}
             </h2>
             <p class="text-gray-400 text-sm">
               Posted By <a
                 target="_blank"
-                href={`//discord.com/users/${avatar.data.author.id}`}
+                href={`//discord.com/users/${avatar?.data.author.id}`}
                 class="text-primary text-lg hover:text-gray-300 tracking-wider"
-                >{`@${avatar.data.author.username}`}</a
+                >{`@${avatar?.data.author.username}`}</a
               >
             </p>
           </div>
@@ -126,14 +126,14 @@ import Tag from "../../components/UI/Tag.svelte";
           <!-- tags  -->
           <div class="my-4 flex justify-center text-center flex-wrap gap-1">
             {
-              avatar.data.tags.map((tag: string) => {
+              avatar?.data.tags.map((tag: string) => {
                 return <Tag tag={tag} client:load />;
               })
             }
           </div>
 
           <!-- btns  -->
-          <AvatarPageButton download={avatar.data.avatar} buy={avatar.data.buy} client:load />
+          <AvatarPageButton download={avatar?.data.avatar} buy={avatar.data.buy} client:load />
 
           <!-- content  -->
           <hr
