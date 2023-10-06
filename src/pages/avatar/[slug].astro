@@ -144,7 +144,7 @@ import Tag from "../../components/UI/Tag.svelte";
           >
             {() => {
               if(Content) {
-                return (<Content />)
+                return (<Content /> ?? <Tag tag="test" />)
               }
             }}
           </article>
