@@ -6,11 +6,11 @@ import AvatarPageButton from "../../components/Avatar/Page/Butons.svelte";
 
 // get entry
 const { slug } = Astro.params;
-if (!slug) throw new Error("Slug not found");
+if (!slug) Astro.redirect("/404/");;
 const avatar = await getEntry("avatars", slug);
 
 // if not there
-if (!avatar) throw new Error("No avatar found for this slug");
+if (!avatar) Astro.redirect("/404/");
 const { Content } = await avatar.render();
 
 // Generate static pages
