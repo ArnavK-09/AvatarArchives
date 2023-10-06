@@ -15,8 +15,3 @@ export const modalData = map({
   description: "Modal Desc",
   download: false,
 });
-
-// @TODO
-// src/content/avatars/
-// src/content
-// public/avatars

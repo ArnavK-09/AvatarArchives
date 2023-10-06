@@ -1,3 +1,6 @@
 node_modules
 package-lock.json
 .astro
+src/content/avatars/
+src/content
+public/avatars
