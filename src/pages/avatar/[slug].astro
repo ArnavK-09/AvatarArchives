@@ -16,7 +16,7 @@ const { Content } = await avatar.render();
 // Generate static pages
 export async function getStaticPaths() {
   const avatars = await getCollection("avatars");
-  return avatars.map((avatar) => ({ params: { slug: avatar.slug } }));
+  return avatars?.map((avatar) => ({ params: { slug: avatar.slug } }));
 }
 
 // Imports
