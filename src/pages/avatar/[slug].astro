@@ -143,7 +143,7 @@ import Tag from "../../components/UI/Tag.svelte";
             class="prose prose-invert prose-headings:text-gray-200 hover:prose-a:text-primary"
           >
             {() => {
-              if(Content !== undefined) {
+              if(Content) {
                 return (<Content />)
               }
             }}
