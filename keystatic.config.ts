@@ -4,11 +4,11 @@ import { config, fields, collection, component } from "@keystatic/core";
 // Keystatic Config
 export default config({
   storage: {
-    kind: "github",
-    repo: {
+    kind: "local",
+    /*repo: {
       owner: `ArnavK-09`,
       name: `AvatarArchives`,
-    },
+    },*/
   },
   collections: {
     avatars: collection({
