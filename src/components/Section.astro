@@ -4,16 +4,18 @@ type Props = {
   data: any;
   heading: string;
   highlight?: string;
+  allContent?: boolean;
+  limit? : number;
 };
-const { data: avatars, heading, highlight } = Astro.props;
+const { data: avatars, heading, highlight,allContent= false ,limit=5} = Astro.props;
 
 // imports
 import AvatarCard from "../components/Card/Avatar.astro";
 ---
 
-<section  id="explore" class="bg-primary-extra rounded-2xl mx-2 py-8 px-4 my-10">
+<section id="explore" class="bg-primary-extra rounded-2xl mx-2 py-8 px-4 my-10">
   <!-- heading  -->
-  <div class="mb-10">
+  <div class="mb-10 break-words">
     <h2
       class="text-3xl md:text-4xl select-none ml-2 pl-1.5 text-left tracking-wide pb-2 font-bold"
     >
@@ -31,24 +33,34 @@ import AvatarCard from "../components/Card/Avatar.astro";
   </div>
   <!-- grid  -->
   <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-    {avatars.slice(0,5).map((data: any) => <AvatarCard data={data} />)}
-    {(avatars.length >=5) && (
+    {!allContent && avatars?.slice(0, limit).map((data: any) => <AvatarCard data={data} />)}
+    {allContent && avatars?.map((data: any) => <AvatarCard data={data} />)}
+    {
+      (avatars?.length >= limit && !allContent) && (
         <a href={`/explore`} aria-label={`explore more`}>
-<div
-class="group h-full text-center hover:brightness-110 cursor-pointer rounded-2xl bg-gradient-to-br hover:from-primary hover:via-primary-dark hover:to-primary from-primary/50 via-primary to-primary-dark p-1 shadow-xl transition hover:shadow-sm"
->
-<div class="rounded-2xl grid h-full place-items-center w-full bg-primary-light p-4 md:p-6">
-    <div class="flex justify-center items-center">
-        <div>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-20 h-20">
-  <path fill-rule="evenodd" d="M4.5 12a1.5 1.5 0 113 0 1.5 1.5 0 01-3 0zm6 0a1.5 1.5 0 113 0 1.5 1.5 0 01-3 0zm6 0a1.5 1.5 0 113 0 1.5 1.5 0 01-3 0z" clip-rule="evenodd" />
-</svg></div>
-<h2>Explore More</h2>
-
-        </div>
-    </div>
-</div>
-</a>
-    )}
+          <div class="group h-full text-center hover:brightness-110 cursor-pointer rounded-2xl bg-gradient-to-br hover:from-primary hover:via-primary-dark hover:to-primary from-primary/50 via-primary to-primary-dark p-1 shadow-xl transition hover:shadow-sm">
+            <div class="rounded-2xl grid h-full place-items-center w-full bg-primary-light p-4 md:p-6">
+              <div class="flex justify-center items-center">
+                <div>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    class="w-20 h-20"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M4.5 12a1.5 1.5 0 113 0 1.5 1.5 0 01-3 0zm6 0a1.5 1.5 0 113 0 1.5 1.5 0 01-3 0zm6 0a1.5 1.5 0 113 0 1.5 1.5 0 01-3 0z"
+                      clip-rule="evenodd"
+                    />
+                  </svg>
+                </div>
+                <h2>Explore More</h2>
+              </div>
+            </div>
+          </div>
+        </a>
+      )
+    }
   </div>
 </section>

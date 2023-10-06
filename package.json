@@ -1,9 +1,9 @@
 {
-  "name": "@keystatic/templates-astro",
-  "version": "0.0.12",
+  "name": "avatar_archives",
+  "version": "0.0.1-alpha",
   "license": "MIT",
+  "author": "ArnavK-09 <arnavkaushal09@gmail.com>",
   "dependencies": {
-    "@astrojs/alpinejs": "^0.3.0",
     "@astrojs/markdoc": "^0.5.0",
     "@astrojs/react": "^3.0.0",
     "@astrojs/svelte": "^4.0.3",
@@ -13,7 +13,6 @@
     "@types/alpinejs": "^3.13.2",
     "@types/react": "^18.2.8",
     "@types/react-dom": "^18.0.11",
-    "alpinejs": "^3.13.0",
     "aos": "^2.3.4",
     "astro": "^3.0.3",
     "kutty": "^0.6.0",

@@ -1,0 +1,20 @@
+---
+// Imports 
+import Hero from "../../components/Home/Hero.astro";
+import Section from "../../components/Section.astro";
+import Layout from "../../layouts/Layout.astro";
+
+// Finding Content 
+import { getCollection } from "astro:content";
+
+// get Data
+const searchResultsAvatars = await getCollection("avatars", ({ data }) => {
+  return data.draft == false;
+});
+---
+<Layout title="Elevate Your Online Persona with AvatarArchives!">
+    <div class="max-h-[70vh]">
+        <Hero title="Investigate Your Search Results!" />
+    </div>
+    <Section heading="Search" highlight="Results!" data={searchResultsAvatars} allContent={true}/>
+</Layout>

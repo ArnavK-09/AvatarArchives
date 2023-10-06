@@ -1,3 +1,11 @@
+---
+// Props 
+type Props = {
+    title?: string
+}
+const {title = "Navigate Through AvatarArchives!"} = Astro.props;
+---
+
 <section>
     <div class="background-todo w-full md:h-screen py-auto my-auto">
         <!-- hero  -->
@@ -5,8 +13,8 @@
             class="flex justify-center items-center h-screen bg-gradient-to-b via-primary-dark/20  from-primary/30 from-10% to-55% to-transparent"
         >
             <div class="mb-9 flex flex-col mx-auto max-w-3xl justify-between">
-                <h1 class="text-center font-semibold md:text-7xl text-5xl">
-                   Explore Avatar Arhives...
+                <h1 class="text-center break-words font-semibold md:text-5xl text-3xl">
+                    {title}
                 </h1>
                 <form action="/search" method="get">
                     <input
