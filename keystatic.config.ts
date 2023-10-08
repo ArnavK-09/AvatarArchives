@@ -83,7 +83,7 @@ export default config({
         }),
         tags: fields.array(fields.text({ label: "Avatar Tags" }), {
           label: "Tag",
-          itemLabel: (props) => props.value.toLowerCase(),
+          itemLabel: (props) => props.value.toLowerCase().trim(),
           description: "Enter Meta Tags For Your Avatar!",
         }),
         buy: fields.url({
