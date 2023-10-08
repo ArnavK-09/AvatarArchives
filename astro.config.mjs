@@ -13,15 +13,5 @@ import svelte from "@astrojs/svelte";
 export default defineConfig({
   integrations: [react(), markdoc(), keystatic(), tailwind(), svelte()],
   output: "hybrid",
-  redirects: {
-    "/tag/[slug]": {
-      status: 302,
-      destination: "/under-construction",
-    },
-    "/explore/": {
-      status: 302,
-      destination: "/under-construction",
-    },
-  },
   adapter: vercel(),
 });

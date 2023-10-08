@@ -1,36 +1,41 @@
 ---
-// Props 
+// Props
 type Props = {
-    data: any;
-}
-const {data: x} = Astro.props;
+  data: any;
+};
+const { data: x } = Astro.props;
 
-// Imports 
-import Tag from '../UI/Tag.svelte';
+// Imports
+import Tag from "../UI/Tag.svelte";
 ---
+
 <a href={`/avatar/${x.slug}`} aria-label={`${x.slug}`}>
-<div
-class="group text-center hover:brightness-110 cursor-pointer rounded-2xl bg-gradient-to-br hover:from-primary hover:via-primary-dark hover:to-primary from-primary/50 via-primary to-primary-dark p-1 shadow-xl transition hover:shadow-sm"
->
+  <div
+    class="group text-center hover:brightness-110 cursor-pointer rounded-2xl bg-gradient-to-br hover:from-primary hover:via-primary-dark hover:to-primary from-primary/50 via-primary to-primary-dark p-1 shadow-xl transition hover:shadow-sm"
+  >
     <div class="rounded-2xl bg-primary-light p-4 md:p-6">
       <div
         class="mb-2 rounded-2xl bg-gradient-to-br from-primary via-primary-dark to-primary hover:from-primary/50 hover:via-primary hover:to-primary-dark p-1 shadow-xl transition hover:shadow-sm"
       >
-        <div class="relative">
+        <div class="relative rounded-2xl bg-primary-light h-full w-full">
           <img
-          draggable="false"
-          (dragstart)="false"
-          oncontextmenu="
-          return false
-          "
-          loading="lazy"
-          class="w-full noSelect aspect-square h-full rounded-2xl"
-          src={x.data.avatar}
-          alt={`${x.data.title}'s Preview'`}
-        />
-        {x.data.original_content == true && (
-          <span class=" absolute top-0 text-sm p-3 py-0.5 tracking-wide font-semibold bg-primary rounded-b-2xl">Original Content</span>
-            )}
+            draggable="false"
+            (dragstart)="false"
+            oncontextmenu="
+            return false
+            "
+            loading="lazy"
+            class="w-full noSelect aspect-square h-full rounded-2xl"
+            src={x.data.avatar}
+            alt={`${x.data.title}'s Preview'`}
+          />
+          {
+            x.data.original_content == true && (
+              <span class=" absolute top-0 text-sm p-3 py-0.5 tracking-wide font-semibold bg-primary rounded-b-2xl">
+                Original Content
+              </span>
+            )
+          }
         </div>
       </div>
 
@@ -46,10 +51,8 @@ class="group text-center hover:brightness-110 cursor-pointer rounded-2xl bg-grad
             </time>
           )
         }
-        {x.data.tags.map((tag: string) => (
-            <Tag tag={tag} client:load/>
-        ))}
+        {x.data.tags.map((tag: string) => <Tag tag={tag} client:load />)}
       </div>
     </div>
-</div>
+  </div>
 </a>

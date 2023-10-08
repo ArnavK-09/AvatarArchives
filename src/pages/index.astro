@@ -5,25 +5,78 @@ import Layout from "../layouts/Layout.astro";
 import Hero from "../components/Home/Hero.astro";
 import Section from "../components/Section.astro";
 
+/**
+ * Shuffles array contents
+ * @param array unknown[]
+ */
+export const shuffleArray = (array: unknown[]) => {
+  // While there remain elements to shuffle.
+  let currentIndex = array.length,
+    randomIndex;
+  while (currentIndex > 0) {
+    // Pick a remaining element.
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex--;
+
+    // And swap it with the current element.
+    [array[currentIndex], array[randomIndex]] = [
+      array[randomIndex],
+      array[currentIndex],
+    ];
+  }
+  // return
+  return array;
+};
+
 // get Data
-const publishedAvatars = await getCollection("avatars", ({ data }) => {
-  return data.draft == false;
+const latestAvatars = (
+  await getCollection("avatars", ({ data }) => {
+    return data.draft == false;
+  })
+).sort((a, b) => {
+  return (
+    new Date(b.data.published).valueOf() - new Date(a.data.published).valueOf()
+  );
 });
-const featuredAvatars = await getCollection("avatars", ({ data }) => {
-  return data.featured == true && data.draft == false;
-});
+const featuredAvatars = shuffleArray(
+  await getCollection("avatars", ({ data }) => {
+    return data.featured == true && data.draft == false;
+  }),
+);
+const randomAvatars = shuffleArray(
+  await getCollection("avatars", ({ data }) => {
+    return data.draft == false && !latestAvatars.includes(data);
+  }),
+);
 ---
 
 <Layout>
   <Hero />
   {
     featuredAvatars?.length > 0 && (
-      <Section data={featuredAvatars} heading="Elite" highlight="Avatars" />
+      <Section
+        data={featuredAvatars}
+        heading="Elite"
+        highlight="Avatars"
+        limit={2}
+        query="featured:true"
+      />
     )
   }
   {
-    publishedAvatars?.length > 0 && (
-      <Section data={publishedAvatars} heading="Latest" highlight="Avatars" />
+    latestAvatars?.length > 0 && (
+      <Section
+        data={latestAvatars}
+        heading="Latest"
+        highlight="Avatars"
+        limit={2}
+        query="latest:true"
+      />
+    )
+  }
+  {
+    randomAvatars?.length > 0 && (
+      <Section data={randomAvatars} heading="Shuffled" highlight="Avatars" />
     )
   }
 </Layout>

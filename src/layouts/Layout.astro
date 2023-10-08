@@ -3,9 +3,13 @@
 export interface Props {
   title?: string;
   description?: string;
-  img?: string
+  img?: string;
 }
-const { title = "Explore Latest Avatars", description, img } = Astro.props;
+const {
+  title = "Avatars for Every Mood, Avatar Archives for You",
+  description,
+  img,
+} = Astro.props;
 
 // imports
 import { ViewTransitions } from "astro:transitions";
@@ -15,10 +19,9 @@ const meta = {
   get title(): string {
     return title.charAt(0).toUpperCase() + title.slice(1);
   },
-  get img() : string {
-    return img??`/logo.png`
-  }
-  ,
+  get img(): string {
+    return img ?? `/logo.png`;
+  },
   get description(): string {
     return (
       description ??
@@ -42,7 +45,7 @@ import Modal from "../components/UI/Modal.svelte";
     <meta charset="UTF-8" />
     <meta name="description" content="Astro description" />
     <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/x-icon" href="/logo.ico" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <!-- gen  -->
     <title>{meta.title} | AvatarArchives</title>
     <meta name="description" content={meta.description} />
@@ -65,6 +68,12 @@ import Modal from "../components/UI/Modal.svelte";
     <meta property="og:description" content={meta.description} />
     <meta property="og:type" content="website" />
     <meta property="og:image" content={meta.img} />
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://github.com/ArnavK-09" />
+    <meta property="twitter:title" content={meta.title} />
+    <meta property="twitter:description" content={meta.description} />
+    <meta property="twitter:image" content={meta.img} />
   </head>
   <body transition:animate="fade" class="bg-primary-light text-white">
     <Modal client:load />
@@ -72,12 +81,15 @@ import Modal from "../components/UI/Modal.svelte";
     <slot />
     <footer></footer>
     <style is:global>
+      /* font  */
       html,
       body {
         -webkit-tap-highlight-color: transparent;
         font-family: "Audiowide", cursive;
         scroll-behavior: smooth;
       }
+
+      /* href selection outline  */
       .noSelect {
         -webkit-tap-highlight-color: transparent;
         -webkit-touch-callout: none;
@@ -91,6 +103,48 @@ import Modal from "../components/UI/Modal.svelte";
       }
       .noSelect:focus {
         outline: none !important;
+      }
+
+      /* text selectio outline  */
+      ::-moz-selection {
+        /* Code for Firefox */
+        color: #2b2d31;
+        background: #5865f2;
+      }
+
+      ::selection {
+        color: #2b2d31;
+        background: #5865f2;
+      }
+
+      /* scrollbar */
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+
+      ::-webkit-scrollbar-track {
+        box-shadow: transparent;
+        border-radius: 10px;
+      }
+
+      ::-webkit-scrollbar-thumb {
+        background: rgb(88, 101, 242);
+        background: linear-gradient(
+          176deg,
+          rgba(88, 101, 242, 1) 35%,
+          rgba(52, 66, 217, 1) 100%
+        );
+        border-radius: 5%;
+      }
+
+      ::-webkit-scrollbar-thumb:hover {
+        background: rgb(52, 66, 217);
+        border-radius: 5%;
+        background: linear-gradient(
+          176deg,
+          rgba(52, 66, 217, 1) 35%,
+          rgba(88, 101, 242, 1) 100%
+        );
       }
     </style>
   </body>
