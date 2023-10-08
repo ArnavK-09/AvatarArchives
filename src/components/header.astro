@@ -1,28 +1,47 @@
 ---
-const links = [{
-  label: "Index", url: "/",
-},{
-  label: "Explore", url: "/explore",
-},{
-  label: "Github", url: "//github.com/ArnavK-09",
-}]
+const links = [
+  {
+    label: "Index",
+    url: "/",
+  },
+  {
+    label: "Explore",
+    url: "/explore",
+  },
+  {
+    label: "Github",
+    url: "//github.com/ArnavK-09",
+  },
+];
 ---
 
 <header class="z-30 w-full px-2 py-4 bg-primary-extra sm:px-4">
   <div class="flex items-center justify-between mx-auto max-w-7xl">
     <a href="/" title="AvatarArchives Home Page" class="flex items-center">
-      <img class="w-16 aspect-square h-16" src="/logo.png" alt="Logo">
+      <img
+        class="saturate-150 w-[4.4rem] aspect-square h-[4.4rem]"
+        src="/logo.png"
+        alt="Logo"
+      />
       <span class="sr-only">AvatarArchives</span>
     </a>
     <ul class="relative gap-6 hidden space-x-1 md:inline-flex">
-     {links.map((link) => (
-      <a aria-label={link.label} href={link.url}> 
-      <li class="text-gray-200 underline underline-offset-8 transition-all ease-in-out hover:underline-offset-4 hover:text-white border-none outline-none">{link.label}</li>
-    </a>
-     ))}
-  </ul>
+      {
+        links.map((link) => (
+          <a aria-label={link.label} href={link.url}>
+            <li class="text-gray-200 underline underline-offset-8 transition-all ease-in-out hover:underline-offset-4 hover:text-white border-none outline-none">
+              {link.label}
+            </li>
+          </a>
+        ))
+      }
+    </ul>
     <div class="flex items-center space-x-1">
-      <a href="#explore" class="md:rounded-2xl rounded-lg btn btn-md mx-4 md:btn-lg bg-gradient-to-r shadow-md shadow-primary-dark from-primary to-primary-dark">Explore Avatars</a>
+      <a
+        href="/#explore"
+        class="md:rounded-2xl rounded-lg btn btn-md mx-4 md:btn-lg bg-gradient-to-r shadow-md shadow-primary-dark from-primary to-primary-dark"
+        >Explore Avatars</a
+      >
     </div>
   </div>
 </header>

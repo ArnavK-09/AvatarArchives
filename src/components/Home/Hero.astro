@@ -1,25 +1,32 @@
 ---
-// Props 
+// Props
 type Props = {
-    title?: string
-}
-const {title = "Navigate Through AvatarArchives!"} = Astro.props;
+    title?: string;
+    value?: string;
+};
+const { title = "Navigate Through AvatarArchives!", value } = Astro.props;
 ---
 
 <section>
-    <div class="background-todo w-full md:h-screen py-auto my-auto">
+    <div
+        id="hero"
+        class="max-h-[70vh] brightness-90 w-full md:h-screen py-auto my-auto"
+    >
         <!-- hero  -->
         <section
-            class="flex justify-center items-center h-screen bg-gradient-to-b via-primary-dark/20  from-primary/30 from-10% to-55% to-transparent"
+            class="flex opacity-100 justify-center items-center h-screen bg-gradient-to-b from-primary-dark/10 from-5% to-55% to-transparent"
         >
             <div class="mb-9 flex flex-col mx-auto max-w-3xl justify-between">
-                <h1 class="text-center break-words font-semibold md:text-5xl text-3xl">
+                <h1
+                    class="text-center select-none break-words font-semibold md:text-5xl text-3xl"
+                >
                     {title}
                 </h1>
-                <form action="/search" method="get">
+                <form action="/explore#explore" method="get">
                     <input
-                        class="py-3 px-4 block w-5/6 md:w-full mx-auto backdrop-blur-sm bg-white/10 shadow-md outline-none my-3 rounded-md"
-                        name="query"
+                        class="py-3 px-4 block text-white brightness-125 w-5/6 md:w-full mx-auto backdrop-blur-sm bg-white/10 shadow-md outline-none my-3 rounded-md"
+                        name="q"
+                        value={value}
                         placeholder="Explore Avatar Archives..."
                     />
                 </form>
@@ -27,3 +34,48 @@ const {title = "Navigate Through AvatarArchives!"} = Astro.props;
         </section>
     </div>
 </section>
+
+<script>
+    let hero = document.getElementById("hero");
+    hero?.classList.add(
+        `bg_head_${Math.floor(Math.random() * (4 - 1 + 1) + 1)}`,
+    );
+</script>
+
+<style>
+    .bg_head_1 {
+        --s: 90px; /* control the size */
+        --_s: 0 0 / var(--s) var(--s);
+        background:
+            radial-gradient(#0000 50%, #0002 54%, #2b2d31 57%) var(--_s),
+            radial-gradient(circle at 40% 30%, #0000 4%, #000 90%) var(--_s),
+            repeating-conic-gradient(#3442d9 0 25%, #5865f2 0 50%) 0 0 /
+                calc(2 * var(--s)) calc(2 * var(--s));
+    }
+    .bg_head_2 {
+        --s: 60px; /* control the size */
+        --c1: #5865f2;
+        --c2: #27292c;
+
+        --c: #0000 71%, var(--c1) 0 79%, #0000 0;
+        --_s: calc(var(--s) / 2) / calc(2 * var(--s)) calc(2 * var(--s));
+        background:
+            linear-gradient(45deg, var(--c)) calc(var(--s) / -2) var(--_s),
+            linear-gradient(135deg, var(--c)) calc(var(--s) / 2) var(--_s),
+            radial-gradient(var(--c1) 35%, var(--c2) 37%) 0 0 / var(--s)
+                var(--s);
+    }
+    .bg_head_3 {
+        --s: 76px; /* control the size */
+
+        --c: #27292c;
+        --_g: conic-gradient(var(--c) 25%, #0000 0) 0 0;
+        background:
+            var(--_g) / calc(2 * var(--s)) calc(var(--s) / 9.5),
+            var(--_g) / calc(var(--s) / 9.5) calc(2 * var(--s)),
+            repeating-conic-gradient(#0000 0 25%, var(--c) 0 50%) var(--s) 0 /
+                calc(2 * var(--s)) calc(2 * var(--s)),
+            radial-gradient(50% 50%, #5865f2 98%, var(--c)) 0 0 / var(--s)
+                var(--s);
+    }
+</style>

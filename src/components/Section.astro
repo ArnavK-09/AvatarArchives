@@ -5,9 +5,17 @@ type Props = {
   heading: string;
   highlight?: string;
   allContent?: boolean;
-  limit? : number;
+  limit?: number;
+  query?: string;
 };
-const { data: avatars, heading, highlight,allContent= false ,limit=5} = Astro.props;
+const {
+  data: avatars,
+  heading,
+  highlight,
+  allContent = false,
+  limit = 5,
+  query = "",
+} = Astro.props;
 
 // imports
 import AvatarCard from "../components/Card/Avatar.astro";
@@ -32,12 +40,25 @@ import AvatarCard from "../components/Card/Avatar.astro";
     </h2>
   </div>
   <!-- grid  -->
+  {
+    avatars?.length == 0 && (
+      <div class="justify-center items-center flex w-full my-40">
+        <div class="text-center text-3xl break-words">No Results Found :/</div>
+      </div>
+    )
+  }
   <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-    {!allContent && avatars?.slice(0, limit).map((data: any) => <AvatarCard data={data} />)}
+    {
+      !allContent &&
+        avatars?.slice(0, limit).map((data: any) => <AvatarCard data={data} />)
+    }
     {allContent && avatars?.map((data: any) => <AvatarCard data={data} />)}
     {
-      (avatars?.length >= limit && !allContent) && (
-        <a href={`/explore`} aria-label={`explore more`}>
+      avatars?.length >= limit && !allContent && (
+        <a
+          href={`/explore?q=${query.toLowerCase()}#explore`}
+          aria-label={`explore more`}
+        >
           <div class="group h-full text-center hover:brightness-110 cursor-pointer rounded-2xl bg-gradient-to-br hover:from-primary hover:via-primary-dark hover:to-primary from-primary/50 via-primary to-primary-dark p-1 shadow-xl transition hover:shadow-sm">
             <div class="rounded-2xl grid h-full place-items-center w-full bg-primary-light p-4 md:p-6">
               <div class="flex justify-center items-center">

@@ -6,17 +6,17 @@ import AvatarPageButton from "../../components/Avatar/Page/Butons.svelte";
 
 // get entry
 const { slug } = Astro.params;
-if (!slug) Astro.redirect("/404/");;
+if (!slug) Astro.redirect("/404/");
 const avatar = await getEntry("avatars", slug);
 
 // if not there
 if (!avatar) Astro.redirect("/404/");
-const { Content } = await avatar?.render() ?? {Content: undefined};
+const { Content } = (await avatar?.render()) ?? { Content: undefined };
 
 // Generate static pages
 export async function getStaticPaths() {
   const avatars = await getCollection("avatars");
-  if(!avatars) return [{params: {slug:"."}}]
+  if (!avatars) return [{ params: { slug: "." } }];
   return avatars?.map((avatar) => ({ params: { slug: avatar.slug } }));
 }
 
@@ -28,7 +28,9 @@ import Tag from "../../components/UI/Tag.svelte";
   <div class="py-6">
     <!-- Breadcrumbs -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex items-center space-x-2 text-gray-200 text-sm">
+      <div
+        class="line-clamp-1 flex items-center space-x-2 text-gray-200 text-sm"
+      >
         <!-- crumb  -->
         <a href="/" class="hover:underline capitalize hover:text-primary"
           >Home</a
@@ -51,7 +53,7 @@ import Tag from "../../components/UI/Tag.svelte";
         <!-- crumb end  -->
         <!-- crumb  -->
         <a
-          href={`/explore/${avatar.data.type}`}
+          href={`/explore?q=type:${avatar?.data.type}#explore`}
           class="hover:underline capitalize hover:text-primary"
           >{avatar?.data.type} Avatars</a
         >
@@ -87,19 +89,23 @@ import Tag from "../../components/UI/Tag.svelte";
               <div class="flex items-center justify-center">
                 <div class="relative">
                   <img
-                  draggable="false"
-                  (dragstart)="false;"
-                  oncontextmenu="
-                  return false
-                  "
-                  class="md:sticky md:w-[30rem] scale-110 md:scale-100 w-64 shadow-2xl h-64 md:h-[30rem] noSelect aspect-square rounded-lg"
-                  src={avatar?.data.avatar ?? "/logo.png"}
-                  alt="Avatar"
-                />
-                  {avatar?.data.original_content == true && (
-                <span class=" absolute top-0 text-sm p-3 py-0.5 tracking-wide font-semibold bg-primary rounded-b-2xl">Original Content</span>
-                  )}
-              </div>
+                    draggable="false"
+                    (dragstart)="false;"
+                    oncontextmenu="
+                    return false
+                    "
+                    class="md:sticky md:w-[30rem] scale-110 md:scale-100 w-64 shadow-2xl h-64 md:h-[30rem] noSelect aspect-square rounded-lg"
+                    src={avatar?.data.avatar ?? "/logo.png"}
+                    alt="Avatar"
+                  />
+                  {
+                    avatar?.data.original_content == true && (
+                      <span class=" absolute top-0 text-sm p-3 py-0.5 tracking-wide font-semibold bg-primary rounded-b-2xl">
+                        Original Content
+                      </span>
+                    )
+                  }
+                </div>
               </div>
             </div>
           </div>
@@ -133,7 +139,11 @@ import Tag from "../../components/UI/Tag.svelte";
           </div>
 
           <!-- btns  -->
-          <AvatarPageButton download={avatar?.data.avatar} buy={avatar?.data.buy} client:load />
+          <AvatarPageButton
+            download={avatar?.data.avatar}
+            buy={avatar?.data.buy}
+            client:load
+          />
 
           <!-- content  -->
           <hr
@@ -142,11 +152,13 @@ import Tag from "../../components/UI/Tag.svelte";
           <article
             class="prose prose-invert prose-headings:text-gray-200 hover:prose-a:text-primary"
           >
-            {() => {
-              if(Content) {
-                return (<Content />)
+            {
+              () => {
+                if (Content) {
+                  return <Content />;
+                }
               }
-            }}
+            }
           </article>
         </div>
       </div>

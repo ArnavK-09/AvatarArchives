@@ -1,20 +1,39 @@
 ---
-// Imports 
+// Imports
 import Hero from "../../components/Home/Hero.astro";
 import Section from "../../components/Section.astro";
 import Layout from "../../layouts/Layout.astro";
+import { shuffleArray } from "../index.astro";
 
-// Finding Content 
-import { getCollection } from "astro:content";
+// vars
+export const prerender = !true;
+const query = Astro.url.href.split("?q=")[1];
 
-// get Data
-const searchResultsAvatars = await getCollection("avatars", ({ data }) => {
-  return data.draft == false;
-});
+// fetch data
+let data: any[] = [];
+const response = await fetch(`${Astro.url.origin}/api?query=${query ?? ""}`);
+data = await response.json();
+
+if (!query) {
+    data = shuffleArray(data);
+}
 ---
-<Layout title="Elevate Your Online Persona with AvatarArchives!">
-    <div class="max-h-[70vh]">
-        <Hero title="Investigate Your Search Results!" />
+
+<Layout
+    title={query
+        ? `Search Results For "${query}"`
+        : "Elevate Your Online Persona with AvatarArchives!"}
+>
+    <div class="!max-h-[70vh]">
+        <Hero
+            value={decodeURIComponent(query ?? "")}
+            title="Investigate Your Search Results!"
+        />
     </div>
-    <Section heading="Search" highlight="Results!" data={searchResultsAvatars} allContent={true}/>
+    <Section
+        heading="Search"
+        highlight="Results!"
+        data={data}
+        allContent={true}
+    />
 </Layout>
