@@ -26,7 +26,7 @@ if (!query) {
 >
     <div class="!max-h-[70vh]">
         <Hero
-            value={decodeURIComponent(query)}
+            value={decodeURIComponent(query ?? "")}
             title="Investigate Your Search Results!"
         />
     </div>
