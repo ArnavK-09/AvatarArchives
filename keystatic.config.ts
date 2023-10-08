@@ -11,7 +11,7 @@ export default config({
     },*/
   },
   cloud: { 
-     project: 'ArnavK-09/AvatarArchives', 
+     project: 'avatar-archives/avatararchives', 
    },
   collections: {
     avatars: collection({
