@@ -3,10 +3,12 @@
 import { getCollection, getEntry } from "astro:content";
 import Layout from "../../layouts/Layout.astro";
 import AvatarPageButton from "../../components/Avatar/Page/Butons.svelte";
+import Share from "../../components/Avatar/Page/Share.svelte";
 
 // get entry
 const { slug } = Astro.params;
 if (!slug) Astro.redirect("/404/");
+// @ts-ignore
 const avatar = await getEntry("avatars", slug);
 
 // if not there
@@ -97,6 +99,7 @@ import Tag from "../../components/UI/Tag.svelte";
                     class="md:sticky md:w-[30rem] scale-110 md:scale-100 w-64 shadow-2xl h-64 md:h-[30rem] noSelect aspect-square rounded-lg"
                     src={avatar?.data.avatar ?? "/logo.png"}
                     alt="Avatar"
+                    loading="lazy"
                   />
                   {
                     avatar?.data.original_content == true && (
@@ -129,6 +132,8 @@ import Tag from "../../components/UI/Tag.svelte";
             </p>
           </div>
 
+          <Share />
+
           <!-- tags  -->
           <div class="my-4 flex justify-center text-center flex-wrap gap-1">
             {
@@ -140,6 +145,9 @@ import Tag from "../../components/UI/Tag.svelte";
 
           <!-- btns  -->
           <AvatarPageButton
+            src={avatar?.data.buy && avatar?.data.original_content == false
+              ? true
+              : false}
             download={avatar?.data.avatar}
             buy={avatar?.data.buy}
             client:load

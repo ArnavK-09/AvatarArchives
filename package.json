@@ -6,6 +6,8 @@
   "dependencies": {
     "@astrojs/markdoc": "^0.5.0",
     "@astrojs/react": "^3.0.0",
+    "@astrojs/rss": "^3.0.0",
+    "@astrojs/sitemap": "^3.0.1",
     "@astrojs/svelte": "^4.0.3",
     "@astrojs/tailwind": "^5.0.0",
     "@astrojs/vercel": "^5.0.2",
@@ -18,9 +20,11 @@
     "astro": "^3.0.3",
     "ave": "^0.0.1-0",
     "kutty": "^0.6.0",
+    "markdown-it": "^13.0.2",
     "nanostores": "^0.9.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "sanitize-html": "^2.11.0",
     "svelte": "^4.2.1",
     "tailwindcss": "^3.3.3"
   },

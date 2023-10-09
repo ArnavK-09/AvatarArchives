@@ -5,6 +5,7 @@
   // props
   export let download = "/logo.png";
   export let buy = "/";
+  export let src = false;
 
   // btns
   const downloadImage = () => {
@@ -18,9 +19,11 @@
   };
   const buyImage = () => {
     modalData.set({
-      title: "Buy Your Favourite Avatar",
+      title: src ? "Source Of Original Avatar" : "Buy Your Favourite Avatar",
       url: buy,
-      description: `To purchase the avatar of your choice, simply click the "Buy" button. This will redirect you to an external website where you can explore options to either acquire the avatar as an NFT (Non-Fungible Token) or obtain a license for personal or commercial use. Unlock endless possibilities and support the creators behind these avatars by making a purchase through AvatarArchives.`,
+      description: src
+        ? `This avatar's original source can be found by clicking the "Source" button below. Clicking on it will redirect you to an external website where you can learn more about its origins and creators. Feel free to explore further to discover the background and context of this avatar.`
+        : `To purchase the avatar of your choice, simply click the "Buy" button. This will redirect you to an external website where you can explore options to either acquire the avatar as an NFT (Non-Fungible Token) or obtain a license for personal or commercial use. Unlock endless possibilities and support the creators behind these avatars by making a purchase through AvatarArchives.`,
     });
     isModalOpen.set(true);
   };
@@ -37,6 +40,6 @@
     type="button"
     on:click={buyImage}
     class="w-full rounded-lg btn btn-lg mx-4 bg-gradient-to-br noSelect from-green-600 via-green-500 to-green-700"
-    >Buy</button
+    >{src ? "Source" : "Buy"}</button
   >
 </div>
