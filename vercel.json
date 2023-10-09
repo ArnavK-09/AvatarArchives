@@ -3,8 +3,8 @@
   "trailingSlash": false,
   "rewrites": [
     {
-      "source": "/api/(.*)",
-      "destination": "/api/fastify"
+      "source": "/(.*)",
+      "destination": "/404.html"
     }
   ]
 }

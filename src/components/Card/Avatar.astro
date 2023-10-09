@@ -51,7 +51,7 @@ import Tag from "../UI/Tag.svelte";
             </time>
           )
         }
-        {x.data.tags.map((tag: string) => <Tag tag={tag} client:load />)}
+        {x.data.tags.slice(0,5).map((tag: string) => <Tag tag={tag} client:load />)}
       </div>
     </div>
   </div>
