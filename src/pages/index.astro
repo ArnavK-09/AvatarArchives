@@ -48,6 +48,11 @@ const randomAvatars = shuffleArray(
     return data.draft == false && !latestAvatars.includes(data);
   }),
 );
+const animatedAvatars = shuffleArray(
+  await getCollection("avatars", ({ data }) => {
+    return data.type.toLowerCase() == "animated" && data.draft == false;
+  }),
+);
 ---
 
 <Layout>
@@ -64,6 +69,17 @@ const randomAvatars = shuffleArray(
     )
   }
   {
+    animatedAvatars?.length > 0 && (
+      <Section
+        data={animatedAvatars}
+        heading="Nitro"
+        highlight="Avatars"
+        limit={2}
+        query="type:animated"
+      />
+    )
+  }
+  {
     latestAvatars?.length > 0 && (
       <Section
         data={latestAvatars}
@@ -76,7 +92,7 @@ const randomAvatars = shuffleArray(
   }
   {
     randomAvatars?.length > 0 && (
-      <Section data={randomAvatars} heading="Shuffled" highlight="Avatars" />
+      <Section data={randomAvatars} heading="Mixed" highlight="Avatars" />
     )
   }
 </Layout>
