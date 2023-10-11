@@ -11,7 +11,8 @@ const query = Astro.url.href.split("?q=")[1];
 
 // fetch data
 let data: any[] = [];
-const response = await fetch(`${Astro.url.origin}/api?query=${query ?? ""}`);
+const qq = `?query=${query}`
+const response = await fetch(`${Astro.url.origin}/api${query ? qq : ""}`);
 data = await response.json();
 
 if (!query) {
