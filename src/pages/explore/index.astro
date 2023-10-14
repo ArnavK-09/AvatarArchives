@@ -3,7 +3,6 @@
 import Hero from "../../components/Home/Hero.astro";
 import Section from "../../components/Section.astro";
 import Layout from "../../layouts/Layout.astro";
-import { shuffleArray } from "../index.astro";
 
 // vars
 export const prerender = !true;
@@ -14,10 +13,6 @@ let data: any[] = [];
 const qq = `?query=${query  ?? "+"}`
 const response = await fetch(`${Astro.url.origin}/api${Astro.url.href.includes("?q=") ? qq : "?query=+"}`);
 data = await response.json();
-
-if (!query) {
-    data = shuffleArray(data);
-}
 ---
 
 <Layout
