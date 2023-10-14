@@ -80,7 +80,7 @@ import Modal from "../components/UI/Modal.svelte";
     <header><Header /></header>
     <slot />
     <footer></footer>
-    <script>
+    <script is:inline client:load>
       /**
        * add hashtags class to all hastags
        */

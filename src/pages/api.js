@@ -8,6 +8,7 @@ export const prerender = false;
 export async function GET(request) {
   // Parse the query parameter from the URL
   const url = new URL(request.url);
+  console.log(`/api request:- ${request.url}`)
   let queryParam = url.searchParams.get("query");
 
   // collections
