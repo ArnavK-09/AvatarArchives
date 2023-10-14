@@ -4,6 +4,29 @@ import { getCollection } from "astro:content";
 // api route
 export const prerender = false;
 
+/**
+ * Shuffles array contents
+ * @param array unknown[]
+ */
+const shuffleArray = (array) => {
+  // While there remain elements to shuffle.
+  let currentIndex = array.length,
+    randomIndex;
+  while (currentIndex > 0) {
+    // Pick a remaining element.
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex--;
+
+    // And swap it with the current element.
+    [array[currentIndex], array[randomIndex]] = [
+      array[randomIndex],
+      array[currentIndex],
+    ];
+  }
+  // return
+  return array;
+};
+
 // GET /api
 export async function GET(request) {
   // Parse the query parameter from the URL
@@ -18,7 +41,7 @@ export async function GET(request) {
   );
   // if nope
   if (!queryParam) {
-    return new Response(JSON.stringify(avatars), { status: 406 });
+    return new Response(JSON.stringify(shuffleArray(avatars)), { status: 406 });
   }
 
   // Split the query into parts
