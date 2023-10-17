@@ -69,14 +69,8 @@ const animatedAvatars = shuffleArray(
     )
   }
   {
-    animatedAvatars?.length > 0 && (
-      <Section
-        data={animatedAvatars}
-        heading="Nitro"
-        highlight="Avatars"
-        limit={2}
-        query="type:animated"
-      />
+    randomAvatars?.length > 0 && (
+      <Section data={randomAvatars} heading="Mixed" highlight="Avatars" />
     )
   }
   {
@@ -90,8 +84,14 @@ const animatedAvatars = shuffleArray(
     )
   }
   {
-    randomAvatars?.length > 0 && (
-      <Section data={randomAvatars} heading="Mixed" highlight="Avatars" />
+    animatedAvatars?.length > 0 && (
+      <Section
+        data={animatedAvatars}
+        heading="Nitro"
+        highlight="Avatars"
+        limit={2}
+        query="type:animated"
+      />
     )
   }
 </Layout>

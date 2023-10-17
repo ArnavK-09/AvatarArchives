@@ -1,7 +1,8 @@
 <button
     title="Share This Avatar"
     style="z-index: 1;"
-    class="share_avatar_btn w-12 md:w-16 md:h-16 h-12 px-4 py-4 fixed md:bottom-10 bottom-7 md:right-8 right-6 bg-gradient-to-br from-primary to-primary-dark hover:to-primary hover:from-primary-dark rounded-full drop-shadow-lg flex justify-center items-center text-white text-4xl hover:drop-shadow-2xl hover:shadow-2xl hover:scale-105 transition ease-in-out duration-300"
+    id="share_avatar_btn"
+    class="share_avatar_btns w-12 md:w-16 md:h-16 h-12 px-4 py-4 fixed md:bottom-10 bottom-7 md:right-8 right-6 bg-gradient-to-br from-primary to-primary-dark hover:to-primary hover:from-primary-dark rounded-full drop-shadow-lg flex justify-center items-center text-white text-4xl hover:drop-shadow-2xl hover:shadow-2xl hover:scale-105 transition ease-in-out duration-300"
 >
     <svg
         xmlns="http://www.w3.org/2000/svg"

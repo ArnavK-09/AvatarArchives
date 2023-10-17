@@ -74,48 +74,13 @@ import Modal from "../components/UI/Modal.svelte";
     <meta property="twitter:title" content={meta.title} />
     <meta property="twitter:description" content={meta.description} />
     <meta property="twitter:image" content={meta.img} />
+    <script src="/script.js" is:inline client:load></script>
   </head>
   <body transition:animate="fade" class="bg-primary-light text-white">
     <Modal client:load />
     <header><Header /></header>
     <slot />
     <footer></footer>
-    <script is:inline client:load>
-      /**
-       * add hashtags class to all hastags
-       */
-      document.addEventListener("DOMContentLoaded", function () {
-        const paragraphs = document.querySelectorAll(".prose");
-        paragraphs.forEach(function (paragraph) {
-          paragraph.innerHTML = paragraph.innerHTML.replace(
-            /#(\w+)/g,
-            '<span class="hashtag">#$1</span>',
-          );
-        });
-      });
-
-      Array.from(document.getElementsByClassName("share_avatar_btn")).forEach(element => {
-        element.addEventListener("click", () => {
-        if (navigator.share && window) {
-          navigator
-            .share({
-              title: `🐻 Checkout "${window.document.title
-                .toString()
-                .split("|")[0]
-                .trim()}" On AvatarArchives — Avatars for Every Mood, Avatar Archives for You...`,
-              url: window.location.href,
-            })
-            .catch((err) => {
-              console.error(err);
-            });
-        } else {
-          alert(
-            "Unable to Share URL, Kindly copy and paste URL From Address Bar!",
-          );
-        }
-      });
-      });
-    </script>
     <style is:global>
       /* font  */
       html,

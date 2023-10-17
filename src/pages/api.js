@@ -31,7 +31,6 @@ const shuffleArray = (array) => {
 export async function GET(request) {
   // Parse the query parameter from the URL
   const url = new URL(request.url);
-  console.log(`/api request:- ${request.url}`)
   let queryParam = url.searchParams.get("query");
 
   // collections
@@ -85,13 +84,15 @@ export async function GET(request) {
   // Filter the avatars based on the query parameters
   let filteredAvatars = avatars.filter((avatar) => {
     // check
-    const tagMatch = tagFilter ? (avatar.data.tags?.map(k => k.trim())).includes(tagFilter) : true;
+    const tagMatch = tagFilter
+      ? avatar.data.tags?.map((k) => k.trim()).includes(tagFilter)
+      : true;
     const featuredMatch = featuredFilter
       ? avatar.data.featured
-        .toString()
-        .toLowerCase()
-        .trim()
-        .includes(featuredFilter.toLowerCase().trim())
+          .toString()
+          .toLowerCase()
+          .trim()
+          .includes(featuredFilter.toLowerCase().trim())
       : true;
     const typeMatch = typeFilter
       ? avatar.data.type.toLowerCase() === typeFilter.toLowerCase()

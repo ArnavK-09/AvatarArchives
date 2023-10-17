@@ -1,7 +1,7 @@
-// imports 
+// imports
 import { vitePreprocess } from "@astrojs/svelte";
 
-// svelte config 
+// svelte config
 export default {
   preprocess: vitePreprocess(),
 };

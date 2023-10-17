@@ -12,7 +12,14 @@ import sitemap from "@astrojs/sitemap";
 
 // https://astro.build/config
 export default defineConfig({
-  integrations: [react(), markdoc(), keystatic(), tailwind(), svelte(), sitemap()],
+  integrations: [
+    react(),
+    markdoc(),
+    keystatic(),
+    tailwind(),
+    svelte(),
+    sitemap(),
+  ],
   output: "hybrid",
-  adapter: vercel()
+  adapter: vercel(),
 });
