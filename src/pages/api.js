@@ -85,7 +85,9 @@ export async function GET(request) {
   let filteredAvatars = avatars.filter((avatar) => {
     // check
     const tagMatch = tagFilter
-      ? avatar.data.tags?.map((k) => k.trim()).includes(tagFilter)
+      ? avatar.data.tags
+          ?.map((k) => k.trim().toLowerCase())
+          .includes(tagFilter.toLowerCase())
       : true;
     const featuredMatch = featuredFilter
       ? avatar.data.featured
