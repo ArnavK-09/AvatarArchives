@@ -108,6 +108,11 @@ export async function GET(request) {
     a.data.title.trim().toLowerCase().includes(queryParam.toLowerCase().trim()),
   );
 
+  // random 
+  if(tagFilter == true && latestFilter == undefined) {
+    filteredAvatars = shuffleArray(filteredAvatars)
+  }
+
   // sort
   if (latestFilter !== undefined) {
     filteredAvatars = filteredAvatars.sort((a, b) => {
