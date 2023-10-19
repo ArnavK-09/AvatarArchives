@@ -1,17 +1,18 @@
 --- 
- export type Props = { 
-   id: string; 
- } 
-  
- const { id } = Astro.props; 
-  
- const gtagUrl = `https://www.googletagmanager.com/gtag/js?id=${id}`; 
+// src: Destiner/astro-analytics
+export type Props = { 
+  id: string; 
+} 
+
+// vars
+const { id } = Astro.props; 
+const gtagUrl = `https://www.googletagmanager.com/gtag/js?id=${id}`; 
 --- 
- <!-- Global site tag (gtag.js) - Google Analytics --> 
- <script async src={gtagUrl}></script> 
- <script define:vars={{id}}> 
+<!-- Global site tag (gtag.js) - Google Analytics --> 
+<script async src={gtagUrl}></script> 
+<script define:vars={{id}}> 
    window.dataLayer = window.dataLayer || []; 
    function gtag(){dataLayer.push(arguments);} 
    gtag('js', new Date()); 
    gtag('config', id); 
- </script>
+</script>
