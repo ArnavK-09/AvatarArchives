@@ -75,7 +75,16 @@ import Modal from "../components/UI/Modal.svelte";
     <meta property="twitter:description" content={meta.description} />
     <meta property="twitter:image" content={meta.img} />
     <script src="/script.js" is:inline client:load></script>
-    <!-- firebase -->
+    <!-- google -->
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-HCE1SSEGFB"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-HCE1SSEGFB');
+    </script>
   </head>
   <body transition:animate="fade" class="bg-primary-light text-white">
     <Modal client:load />
