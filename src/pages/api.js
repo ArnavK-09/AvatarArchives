@@ -109,8 +109,8 @@ export async function GET(request) {
   );
 
   // random tags
-  if(tagFilter && latestFilter==undefined) {
-    filteredAvatars = shuffleArray(filteredAvatars)
+  if (tagFilter && latestFilter == undefined) {
+    filteredAvatars = shuffleArray(filteredAvatars);
   }
 
   // sort

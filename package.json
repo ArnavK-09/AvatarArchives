@@ -7,7 +7,7 @@
     "@astrojs/markdoc": "^0.6.0",
     "@astrojs/react": "^3.0.0",
     "@astrojs/rss": "^3.0.0",
-    "@astrojs/sitemap": "^3.0.1",
+    "@astrojs/sitemap": "^3.0.2",
     "@astrojs/svelte": "^4.0.3",
     "@astrojs/tailwind": "^5.0.0",
     "@astrojs/vercel": "^5.0.2",
@@ -34,7 +34,7 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "format": "npx prettier -w . -y"
+    "format": "npx prettier -w ."
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.10"

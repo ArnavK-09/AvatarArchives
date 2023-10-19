@@ -12,13 +12,16 @@ import sitemap from "@astrojs/sitemap";
 
 // https://astro.build/config
 export default defineConfig({
+  site: "https://avatar-archives.vercel.app",
   integrations: [
     react(),
     markdoc(),
     keystatic(),
     tailwind(),
     svelte(),
-    sitemap(),
+    sitemap({
+      filter: (page) => !page.includes("keystatic"),
+    }),
   ],
   output: "hybrid",
   adapter: vercel(),
