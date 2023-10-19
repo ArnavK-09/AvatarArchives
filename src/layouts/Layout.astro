@@ -35,6 +35,7 @@ const meta = {
 // components
 import Header from "../components/header.astro";
 import Modal from "../components/UI/Modal.svelte";
+import GA from ".../componrnts/GA.astro";
 ---
 
 <!doctype html>
@@ -76,15 +77,7 @@ import Modal from "../components/UI/Modal.svelte";
     <meta property="twitter:image" content={meta.img} />
     <script src="/script.js" is:inline client:load></script>
     <!-- google -->
-    <!-- Google tag (gtag.js) -->
-    <script client:load async src="https://www.googletagmanager.com/gtag/js?id=G-HCE1SSEGFB"></script>
-    <script client:load>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'G-HCE1SSEGFB');
-    </script>
+    <GA id="G-FKPLFGLX09"/>
   </head>
   <body transition:animate="fade" class="bg-primary-light text-white">
     <Modal client:load />
