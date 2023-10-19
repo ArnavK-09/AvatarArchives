@@ -77,8 +77,8 @@ import Modal from "../components/UI/Modal.svelte";
     <script src="/script.js" is:inline client:load></script>
     <!-- google -->
     <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-HCE1SSEGFB"></script>
-    <script>
+    <script client:load async src="https://www.googletagmanager.com/gtag/js?id=G-HCE1SSEGFB"></script>
+    <script client:load>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
