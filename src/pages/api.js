@@ -108,8 +108,8 @@ export async function GET(request) {
     a.data.title.trim().toLowerCase().includes(queryParam.toLowerCase().trim()),
   );
 
-  // random 
-  if(tagFilter == true && latestFilter == undefined) {
+  // random tags
+  if(tagFilter && latestFilter==undefined) {
     filteredAvatars = shuffleArray(filteredAvatars)
   }
 

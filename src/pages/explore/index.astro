@@ -17,7 +17,7 @@ data = await response.json();
 
 <Layout
     title={query
-        ? `Search Results For "${query}"`
+        ? `Search Results For "${decodeURIComponent(query)}"`
         : "Elevate Your Online Persona with AvatarArchives!"}
 >
     <div class="!max-h-[70vh]">
