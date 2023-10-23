@@ -5,7 +5,6 @@
 
 <button
   type="button"
-  id={tag.toLowerCase()}
   on:click={() => {
     if (!window.document) return;
     window.document.location.href = `//${
