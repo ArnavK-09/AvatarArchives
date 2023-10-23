@@ -7,6 +7,7 @@ const { data: x } = Astro.props;
 
 // Imports
 import Tag from "../UI/Tag.svelte";
+import { Image } from 'astro:assets';
 ---
 
 <a href={`/avatar/${x.slug}`} aria-label={`${x.slug}`}>
@@ -18,17 +19,16 @@ import Tag from "../UI/Tag.svelte";
         class="mb-2 rounded-2xl bg-gradient-to-br from-primary via-primary-dark to-primary hover:from-primary/50 hover:via-primary hover:to-primary-dark p-1 shadow-xl transition hover:shadow-sm"
       >
         <div class="relative rounded-2xl bg-primary-light h-full w-full">
-          <img
-            draggable="false"
-            (dragstart)="false"
-            oncontextmenu="
-            return false
-            "
-            loading="lazy"
-            class="w-full noSelect aspect-square h-full rounded-2xl"
-            src={x.data.avatar}
-            alt={`${x.data.title}'s Preview'`}
-          />
+        <Image    
+          (dragstart)="false"     
+          draggable="false"
+          oncontextmenu="return false;" 
+          width={20} 
+          height={20} 
+          src={x.data.avatar} 
+          alt={`${x.data.title}'s Preview'`} 
+          class="w-full noSelect aspect-square h-full rounded-2xl" 
+        />
           {
             x.data.original_content == true && (
               <span class=" absolute top-0 text-sm p-3 py-0.5 tracking-wide font-semibold bg-primary rounded-b-2xl">
