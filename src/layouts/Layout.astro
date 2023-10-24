@@ -23,12 +23,16 @@ const meta = {
     return img ?? `/banner.png`;
   },
   get description(): string {
-    return (
-      description ??
-      `
+    const defaultDesc = `
     Discover a wide variety of static and animated avatars for popular social platforms like Discord, Instagram, Reddit, Slack, and more at AvatarArchives. Express your unique personality and enhance your online presence with our diverse collection of eye-catching avatars. Stand out in the digital world and make a statement with AvatarArchives.
-    `.trim()
-    );
+    `.trim();
+    const desc = description
+      ?.replaceAll("*", "")
+      .replaceAll("#", "")
+      .replaceAll("__", "")
+      .trim();
+    const finalDesc = desc + "\n" + defaultDesc;
+    return finalDesc.split("").splice(0, 152).join("") + "...";
   },
 };
 
@@ -44,7 +48,6 @@ import GA from "../components/GA.astro";
     <!-- Head  -->
     <ViewTransitions />
     <meta charset="UTF-8" />
-    <meta name="description" content="Astro description" />
     <meta name="viewport" content="width=device-width" />
     <link rel="sitemap" href="/sitemap-index.xml" />
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
@@ -56,9 +59,12 @@ import GA from "../components/GA.astro";
     <meta name="author" content="ArnavK-09" />
     <meta name="copyright" content="ArnavK-09" />
     <!-- font  -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link async href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@700&display=swap"
+      rel="stylesheet"
+    />
     <!-- og tags  -->
     <meta property="og:title" content={meta.title} />
     <meta property="og:site_name" content="AvatarArchives" />
@@ -72,9 +78,9 @@ import GA from "../components/GA.astro";
     <meta property="twitter:title" content={meta.title} />
     <meta property="twitter:description" content={meta.description} />
     <meta property="twitter:image" content={meta.img} />
-    <script src="/script.js" is:inline client:load></script>
+    <script src="/script.js" is:inline></script>
     <!-- google -->
-    <GA id="G-FKPLFGLX09"/>
+    <GA id="G-FKPLFGLX09" />
   </head>
   <body transition:animate="fade" class="bg-primary-light text-white">
     <Modal client:load />
@@ -86,7 +92,7 @@ import GA from "../components/GA.astro";
       html,
       body {
         -webkit-tap-highlight-color: transparent;
-        font-family: 'Pixelify Sans', sans-serif;
+        font-family: "Pixelify Sans", sans-serif;
         scroll-behavior: smooth;
       }
 
