@@ -16,7 +16,7 @@
 
 - **Search Bar**: Use the search bar to locate avatars by name, artist, or any other related keywords. It's quick and convenient.
 
-- **Static & High Quality**: Our avatars are high-quality images, ensuring your digital presence stands out in the crowd.
+- **High Quality**: Our avatars are high-quality images, ensuring your digital presence stands out in the crowd.
 
 ## 🚍 Live Demo
 
