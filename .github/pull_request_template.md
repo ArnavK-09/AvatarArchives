@@ -2,11 +2,11 @@
 
 Please ensure that your PR complies with the following requirements:
 
-- [ ] You have checked for open issues related to your changes and referenced them in this PR (if applicable).
-- [ ] You have forked the repository and created your branch from `main` (or another suitable branch).
-- [ ] Your code follows our coding standards and style guidelines.
-- [ ] You have tested your changes to ensure they work as expected.
-- [ ] You have reviewed your changes and verified that they don't introduce new issues.
+- [] You have checked for open issues related to your changes and referenced them in this PR (if applicable).
+- [] You have forked the repository and created your branch from `main` (or another suitable branch).
+- [] Your code follows our coding standards and style guidelines.
+- [] You have tested your changes to ensure they work as expected.
+- [] You have reviewed your changes and verified that they don't introduce new issues.
 
 ## Description
 
