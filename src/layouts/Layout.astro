@@ -30,6 +30,7 @@ const meta = {
       ?.replaceAll("*", "")
       .replaceAll("#", "")
       .replaceAll("__", "")
+      .replaceAll("> ","")
       .trim();
     const finalDesc = desc + "\n" + defaultDesc;
     return finalDesc.split("").splice(0, 152).join("") + "...";
