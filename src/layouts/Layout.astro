@@ -165,6 +165,43 @@ import GA from "../components/GA.astro";
           rgba(52, 66, 217, 1) 100%
         );
       }
+
+/* hero backgrounds */
+    .bg_head_1 {
+        --s: 90px; /* control the size */
+        --_s: 0 0 / var(--s) var(--s);
+        background:
+            radial-gradient(#0000 50%, #0002 54%, #2b2d31 57%) var(--_s),
+            radial-gradient(circle at 40% 30%, #0000 4%, #000 90%) var(--_s),
+            repeating-conic-gradient(#3442d9 0 25%, #5865f2 0 50%) 0 0 /
+                calc(2 * var(--s)) calc(2 * var(--s));
+    }
+    .bg_head_2 {
+        --s: 60px; /* control the size */
+        --c1: #5865f2;
+        --c2: #27292c;
+
+        --c: #0000 71%, var(--c1) 0 79%, #0000 0;
+        --_s: calc(var(--s) / 2) / calc(2 * var(--s)) calc(2 * var(--s));
+        background:
+            linear-gradient(45deg, var(--c)) calc(var(--s) / -2) var(--_s),
+            linear-gradient(135deg, var(--c)) calc(var(--s) / 2) var(--_s),
+            radial-gradient(var(--c1) 35%, var(--c2) 37%) 0 0 / var(--s)
+                var(--s);
+    }
+    .bg_head_3 {
+        --s: 76px; /* control the size */
+
+        --c: #27292c;
+        --_g: conic-gradient(var(--c) 25%, #0000 0) 0 0;
+        background:
+            var(--_g) / calc(2 * var(--s)) calc(var(--s) / 9.5),
+            var(--_g) / calc(var(--s) / 9.5) calc(2 * var(--s)),
+            repeating-conic-gradient(#0000 0 25%, var(--c) 0 50%) var(--s) 0 /
+                calc(2 * var(--s)) calc(2 * var(--s)),
+            radial-gradient(50% 50%, #5865f2 98%, var(--c)) 0 0 / var(--s)
+                var(--s);
+    }
     </style>
   </body>
 </html>
