@@ -2,12 +2,14 @@
  * add hashtags class to all hastags
  */
 document.addEventListener("DOMContentLoaded", function () {
+  changeBG()
   highlightHashtags();
 });
 document.addEventListener("astro:page-load", function () {
   document.getElementById("share_avatar_btn")?.addEventListener("click", () => {
     shareSite();
   });
+  changeBG()
   highlightHashtags();
 });
 
@@ -52,4 +54,14 @@ function highlightHashtags() {
       '<span class="hashtag">#$1</span>',
     );
   });
+}
+
+/**
+ * Change hero background patterns
+ */
+function changeBG() {
+    const hero = document.getElementById("hero");
+    hero?.classList.add(
+        `bg_head_${Math.floor(Math.random() * (4 - 1) + 1)}`,
+    );
 }
