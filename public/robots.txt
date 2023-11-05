@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /keystatic/
 
-Sitemap: https://avatar-archives.vercel.app/sitemap-index.xml
+Sitemap: https://avatar-archives.vercel.app/sitemap-0.xml
