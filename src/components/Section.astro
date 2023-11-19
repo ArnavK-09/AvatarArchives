@@ -18,7 +18,8 @@ const {
 } = Astro.props;
 
 // imports
-import AvatarCard from "../components/Card/Avatar.astro";
+import AvatarCard from "./Card/Avatar.svelte";
+import PaginatedAvatarsGrid from "./UI/PaginatedAvatarsGrid.svelte";
 ---
 
 <section id="explore" class="bg-primary-extra rounded-2xl mx-2 py-8 px-4 my-10">
@@ -52,7 +53,7 @@ import AvatarCard from "../components/Card/Avatar.astro";
       !allContent &&
         avatars?.slice(0, limit).map((data: any) => <AvatarCard data={data} />)
     }
-    {allContent && avatars?.map((data: any) => <AvatarCard data={data} />)}
+    {allContent && (<PaginatedAvatarsGrid data={avatars} client:load />)}
     {
       avatars?.length >= limit && !allContent && (
         <a

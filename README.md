@@ -60,7 +60,7 @@ Check out the project repository on GitHub & Star the Repo!: [AvatarArchives Rep
 
 # 📒 License
 
-All original avatars contributed by you are protected under your copyright. Make sure to adhere to terms when contributing to the project. For further information, please refer to the project's [license](LICENSE.md).
+All original avatars contributed by you are protected under your copyright. Make sure to adhere to terms when contributing to the project. For further information, please refer to the project's [license](LICENSE).
 
 ---
 

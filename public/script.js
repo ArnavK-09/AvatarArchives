@@ -2,14 +2,14 @@
  * add hashtags class to all hastags
  */
 document.addEventListener("DOMContentLoaded", function () {
-  changeBG()
+  changeBG();
   highlightHashtags();
 });
 document.addEventListener("astro:page-load", function () {
   document.getElementById("share_avatar_btn")?.addEventListener("click", () => {
     shareSite();
   });
-  changeBG()
+  changeBG();
   highlightHashtags();
 });
 
@@ -60,8 +60,11 @@ function highlightHashtags() {
  * Change hero background patterns
  */
 function changeBG() {
-    const hero = document.getElementById("hero");
-    hero?.classList.add(
-        `bg_head_${Math.floor(Math.random() * (4 - 1) + 1)}`,
-    );
+  const hero = document.getElementById("hero");
+  hero?.classList.add(`bg_head_${Math.floor(Math.random() * (4 - 1) + 1)}`);
 }
+
+/**
+ * Prevent context menu
+ */
+document.addEventListener("contextmenu", (e) => e.preventDefault());

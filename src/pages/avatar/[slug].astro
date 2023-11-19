@@ -96,10 +96,6 @@ import Tag from "../../components/UI/Tag.svelte";
                 <div class="relative">
                   <img
                     draggable="false"
-                    (dragstart)="false;"
-                    oncontextmenu="
-                    return false
-                    "
                     class="md:sticky md:w-[30rem] scale-110 md:scale-100 w-64 shadow-2xl h-64 md:h-[30rem] noSelect aspect-square rounded-lg"
                     src={avatar?.data.avatar ?? "/logo.png"}
                     alt="Avatar"

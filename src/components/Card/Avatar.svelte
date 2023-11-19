@@ -1,13 +1,11 @@
----
-// Props
-type Props = {
-  data: any;
-};
-const { data: x } = Astro.props;
+<script lang="ts">
+  // Props
+  export let data: any = {};
 
-// Imports
-import Tag from "../UI/Tag.svelte";
----
+  // Imports
+  import Tag from "../UI/Tag.svelte";
+  let x = data;
+</script>
 
 <a href={`/avatar/${x.slug}`} aria-label={`${x.slug}`}>
   <div
@@ -20,22 +18,18 @@ import Tag from "../UI/Tag.svelte";
         <div class="relative rounded-2xl bg-primary-light h-full w-full">
           <img
             draggable="false"
-            (dragstart)="false"
-            oncontextmenu="
-            return false
-            "
             loading="lazy"
             class="w-full noSelect aspect-square h-full rounded-2xl"
             src={x.data.avatar}
             alt={`${x.data.title}'s Preview'`}
           />
-          {
-            x.data.original_content == true && (
-              <span class=" absolute top-0 text-sm p-3 py-0.5 tracking-wide font-semibold bg-primary rounded-b-2xl">
-                Original Content
-              </span>
-            )
-          }
+          {#if x.data.original_content}
+            <span
+              class=" absolute top-0 text-sm p-3 py-0.5 tracking-wide font-semibold bg-primary rounded-b-2xl"
+            >
+              Original Content
+            </span>
+          {/if}
         </div>
       </div>
 
@@ -44,14 +38,14 @@ import Tag from "../UI/Tag.svelte";
       </h3>
 
       <div class="mt-3 flex justify-center text-center overflow-hidden gap-1">
-        {
-          x.data.tags == 0 && (
-            <time datetime={`${x.data.published} 00:00`} class="text-gray-400">
-              {x.data.published}
-            </time>
-          )
-        }
-        {x.data.tags.slice(0,5).map((tag: string) => <Tag tag={tag} client:load />)}
+        {#if x.data.tags?.length == 0}
+          <time datetime={`${x.data.published} 00:00`} class="text-gray-400">
+            {x.data.published}
+          </time>
+        {/if}
+        {#each x.data.tags?.splice(0, 5) as tag (tag)}
+          <Tag tag={tag} />
+        {/each}
       </div>
     </div>
   </div>
