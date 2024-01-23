@@ -4,7 +4,7 @@ import { config, fields, collection, component } from "@keystatic/core";
 // Keystatic Config
 export default config({
   storage: {
-    kind: "local",
+    kind: "cloud",
   },
   cloud: {
     project: "avatar-archives/avatararchives",
